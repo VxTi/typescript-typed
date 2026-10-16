@@ -38,3 +38,20 @@ export type ExpandConstArrayIncl<T, N extends number> = [
   ...ExpandConstArrayExcl<T, N>,
   ...T[],
 ];
+
+export type SplitString<
+  TIn extends string,
+  TSplit extends string,
+> = TIn extends `${infer TFirst}${TSplit}${infer TRest}`
+  ? [TFirst, ...SplitString<TRest, TSplit>]
+  : [TIn];
+
+export type FilterConstArray<
+  TIn extends readonly any[],
+  R,
+> = TIn extends readonly [infer TFirst, ...infer TRest]
+  ? TFirst extends R
+    ? [TFirst, ...FilterConstArray<TRest, R>]
+    : FilterConstArray<TRest, R>
+  : [];
+export type Filtered<In, Type> = Extract<In, Type>;

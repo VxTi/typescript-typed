@@ -2,6 +2,7 @@ import type {
   EmptyArray,
   ExpandConstArrayExcl,
   ExpandConstArrayIncl,
+  FilterConstArray,
   MaybeReadonlyArray,
   NonEmptyArray,
   Nullable,
@@ -44,4 +45,14 @@ export function isNonEmptyArray<T>(
 }
 export function isEmptyArray<T>(arr: T[]): arr is EmptyArray<T> {
   return arr.length === 0;
+}
+
+export function filterConstArray<
+  const TIn extends readonly any[],
+  TOut extends TIn[number],
+>(
+  input: TIn,
+  predicate: (value: TIn[number]) => value is TOut,
+): FilterConstArray<TIn, TOut> {
+  return input.filter(predicate) as never;
 }
