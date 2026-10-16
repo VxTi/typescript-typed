@@ -1,6 +1,6 @@
 export type Nullish = undefined | null;
 export type Nullable<T> = T | Nullish;
-export type Primitive = string | boolean | number;
+export type Primitive = string | boolean | number | undefined | null | bigint;
 
 /* Object types */
 export type Prettify<T> = {

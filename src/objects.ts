@@ -1,5 +1,5 @@
-import type { Nullable, MakeNonNullable } from './types';
-import { isNotNil } from './nullable';
+import type { Nullable, MakeNonNullable } from './types.js';
+import { isNotNil } from './nullable.js';
 
 export function entries<TKey extends PropertyKey, TValue>(
   input: Record<TKey, TValue>,

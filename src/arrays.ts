@@ -5,8 +5,8 @@ import type {
   MaybeReadonlyArray,
   NonEmptyArray,
   Nullable,
-} from './types';
-import { isNil } from './nullable';
+} from './types.js';
+import { isNil } from './nullable.js';
 
 export function hasArrayLengthAtLeast<T, N extends number>(
   arr: T[],

@@ -1,9 +1,9 @@
-import { isNil } from './nullable';
-import type { NonEmptyString, Nullable } from './types';
+import { isNil } from './nullable.js';
+import type { NonEmptyString, Nullable, Nullish } from './types.js';
 
 export function toNonEmptyString(
   input: Nullable<string>,
-): NonEmptyString | undefined {
+): Nullable<NonEmptyString> {
   return isNonEmptyString(input) ? input : undefined;
 }
 
@@ -13,5 +13,12 @@ export function isNonEmptyString(
 ): input is NonEmptyString {
   if (isNil(input)) return false;
 
-  return trim ? input.trim().length > 0 : input.length > 0;
+  return (trim ? input.trim() : input).length > 0;
+}
+
+export function isEmptyString(
+  input: Nullable<string>,
+  trim: boolean = false,
+): input is '' | Nullish {
+  return isNil(input) || (trim ? input.trim() : input).length === 0;
 }

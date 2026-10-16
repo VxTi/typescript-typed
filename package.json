@@ -5,20 +5,27 @@
   "type": "module",
   "private": false,
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tsconfig.strict.json": "./tsconfig.strict.json"
+  },
+  "files": [
+    "dist",
+    "tsconfig.strict.json"
+  ],
   "engines": {
     "node": ">=24"
   },
   "scripts": {
     "check:types": "tsc --noEmit; rm -f tsconfig.tsbuildinfo;",
     "build": "tsc -p tsconfig.json",
-    "lint:ci": "eslint \"./{src,bin}/**/*.{ts,tsx}\" --max-warnings 0 --cache",
-    "lint": "eslint \"./{src,bin}/**/*.{ts,tsx}\" --max-warnings 0 --cache --fix",
+    "lint:ci": "eslint \"./src/**/*.ts\" --max-warnings 0 --cache",
+    "lint": "eslint \"./src/**/*.ts\" --max-warnings 0 --cache --fix",
     "sanity": "npm run test && npm run check:types && npm run lint"
   },
-  "browserslist": [
-    "defaults",
-    "not dead"
-  ],
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
     "@eslint/js": "^10.0.1",
