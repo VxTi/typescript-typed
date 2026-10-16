@@ -1,6 +1,6 @@
 {
   "name": "@vxti/typed",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Luca Warmenhoven",
   "type": "module",
   "private": false,
@@ -8,7 +8,9 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "default": "./dist/index.js",
+      "require": "./dist/index.js"
     },
     "./tsconfig.strict.json": "./tsconfig.strict.json"
   },
