@@ -1,0 +1,40 @@
+export type Nullish = undefined | null;
+export type Nullable<T> = T | Nullish;
+export type Primitive = string | boolean | number;
+
+/* Object types */
+export type Prettify<T> = {
+  [K in keyof T as PropertyKey extends K ? never : K]: T[K];
+} & {};
+
+export type MaybePromise<T> = T | PromiseLike<T>;
+
+export type NonEmptyString = string & { readonly __tag: unique symbol };
+
+export type ExcludeIndexSignature<T> = {
+  [K in keyof T as K extends PropertyKey ? never : K]: T[K];
+};
+
+export type MakeNonNullable<T> = Prettify<{
+  [K in keyof T as T[K] extends Nullish ? never : K]: T[K];
+}>;
+
+/* Array types */
+export type NonEmptyArray<T> = [T, ...T[]];
+export type EmptyArray<T> = [] & T[];
+export type MaybeArray<T> = T | T[];
+export type MaybeReadonlyArray<T> = T[] | readonly T[];
+export type ExpandConstArrayExcl<
+  T,
+  N extends number,
+  Acc extends unknown[] = [],
+> = [number] extends [N]
+  ? T[]
+  : Acc['length'] extends N
+    ? Acc
+    : ExpandConstArrayExcl<T, N, [...Acc, T]>;
+
+export type ExpandConstArrayIncl<T, N extends number> = [
+  ...ExpandConstArrayExcl<T, N>,
+  ...T[],
+];

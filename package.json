@@ -1,0 +1,39 @@
+{
+  "name": "@vxti/typed",
+  "version": "1.0.0",
+  "author": "Luca Warmenhoven",
+  "type": "module",
+  "private": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "check:types": "tsc --noEmit; rm tsconfig.tsbuildinfo",
+    "build": "npm run lint && npm run test",
+    "lint:ci": "eslint \"./{src,bin}/**/*.{ts,tsx}\" --max-warnings 0 --cache",
+    "lint": "eslint \"./{src,bin}/**/*.{ts,tsx}\" --max-warnings 0 --cache --fix",
+    "sanity": "npm run test && npm run check:types && npm run lint"
+  },
+  "browserslist": [
+    "defaults",
+    "not dead"
+  ],
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.1.2",
+    "eslint": "^10.10.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.2",
+    "typescript-eslint": "^8.70.0",
+    "typescript7": "npm:typescript@^7.0.2",
+    "vitest": "^5.0.1"
+  },
+  "packageManager": "pnpm@12.4.2+sha512.08adc6613180275c7c9edada39dcf08c9c61ad4e7eaf330a4f3461f102b0f907423454d117f98e72d47fef0616070644d7bffc973a6a57f5090a6d7c368b07c9"
+}
