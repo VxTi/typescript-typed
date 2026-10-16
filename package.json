@@ -1,6 +1,6 @@
 {
   "name": "@vxti/typed",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Luca Warmenhoven",
   "type": "module",
   "private": false,
@@ -24,7 +24,8 @@
     "build": "tsc -p tsconfig.json",
     "lint:ci": "eslint \"./src/**/*.ts\" --max-warnings 0 --cache",
     "lint": "eslint \"./src/**/*.ts\" --max-warnings 0 --cache --fix",
-    "sanity": "npm run test && npm run check:types && npm run lint"
+    "sanity": "npm run test && npm run check:types && npm run lint",
+    "prepublishOnly": "rm -rf ./dist; npm run lint && npm run check:types && npm run build"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",

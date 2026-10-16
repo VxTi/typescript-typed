@@ -1,14 +1,14 @@
-import type { Nullable, MakeNonNullable } from './types.js';
+import type { Nullable, MakeNonNullable, MaybePartial } from './types.js';
 import { isNotNil } from './nullable.js';
 
 export function entries<TKey extends PropertyKey, TValue>(
-  input: Record<TKey, TValue>,
+  input: MaybePartial<Record<TKey, TValue>>,
 ): [TKey, TValue][];
 export function entries<TKey extends PropertyKey, TValue>(
-  input: Partial<Record<TKey, Nullable<TValue>>>,
+  input: MaybePartial<Record<TKey, Nullable<TValue>>>,
 ): [TKey, Nullable<TValue>][];
 export function entries<TKey extends PropertyKey, TValue>(
-  input: Partial<Record<TKey, Nullable<TValue>>>,
+  input: MaybePartial<Record<TKey, Nullable<TValue>>>,
 ): [TKey, Nullable<TValue>][] {
   return Object.entries(input) as never;
 }
@@ -24,10 +24,10 @@ export function fromEntries<K extends PropertyKey, V>(
 ): Record<K, V>;
 export function fromEntries<K extends PropertyKey, V>(
   entries: [K, Nullable<V>][],
-): Partial<Record<K, V>>;
+): Record<K, Nullable<V>>;
 export function fromEntries<K extends PropertyKey, V>(
   entries: [K, Nullable<V>][],
-): Partial<Record<K, V>> {
+): Record<K, Nullable<V>> {
   return Object.fromEntries(entries) as Record<K, V>;
 }
 

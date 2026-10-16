@@ -8,7 +8,7 @@ export type Prettify<T> = {
 } & {};
 
 export type MaybePromise<T> = T | PromiseLike<T>;
-
+export type MaybePartial<T> = T | Partial<T>;
 export type NonEmptyString = string & { readonly __tag: unique symbol };
 
 export type ExcludeIndexSignature<T> = {
