@@ -12,6 +12,8 @@ import type { Nullable, Nullish, Falsey } from './types.js';
  *   console.log(value.toUpperCase()); // value is narrowed to string
  * }
  */
+export function isNotNil(input: Nullish): false;
+export function isNotNil<T>(input: Nullable<T>): input is T;
 export function isNotNil<T>(input: Nullable<T>): input is T {
   return !isNil(input);
 }
@@ -28,6 +30,8 @@ export function isNotNil<T>(input: Nullable<T>): input is T {
  *   console.log('Value is missing');
  * }
  */
+export function isNil(input: Nullish): true;
+export function isNil(input: unknown): input is Nullish;
 export function isNil(input: unknown): input is Nullish {
   return input === undefined || input === null;
 }
@@ -43,6 +47,8 @@ export function isNil(input: unknown): input is Nullish {
  * isFalsey(''); // true
  * isFalsey('hello'); // false
  */
+export function isFalsey(input: Falsey): true;
+export function isFalsey(input: unknown): input is Falsey;
 export function isFalsey(input: unknown): input is Falsey {
   return (
     input === undefined ||
@@ -63,6 +69,8 @@ export function isFalsey(input: unknown): input is Falsey {
  * const items = [0, 1, false, 'text', null];
  * const truthy = items.filter(isNotFalsey); // [1, 'text']
  */
+export function isNotFalsey(input: Falsey): false;
+export function isNotFalsey<T>(input: T | Falsey): input is T;
 export function isNotFalsey<T>(input: T | Falsey): input is T {
   return !isFalsey(input);
 }
