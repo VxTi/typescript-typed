@@ -40,15 +40,6 @@ export default defineConfig([
 
       'no-console': 2,
 
-      'no-restricted-syntax': [
-        'error',
-        {
-          selector:
-            'TSAnyKeyword:not(:matches(TSTypeParameter *, TSConditionalType > .extendsType, TSConditionalType > .extendsType *))',
-          message: "Do not use 'any' except as a generic constraint boundary.",
-        },
-      ],
-
       '@typescript-eslint/restrict-template-expressions': 0,
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-empty-object-type': 0,

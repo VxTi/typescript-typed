@@ -1,11 +1,20 @@
 export type Nullish = undefined | null;
 export type Nullable<T> = T | Nullish;
+
+/**
+ * Represents a type that encompasses all JavaScript values
+ * that are considered "falsey" in a boolean context.
+ */
+export type Falsey = Nullish | '' | 0 | false;
+
 export type Primitive = string | boolean | number | undefined | null | bigint;
 
 /* Object types */
 export type Prettify<T> = {
   [K in keyof T as PropertyKey extends K ? never : K]: T[K];
 } & {};
+
+export type ObjectLike = { [s: string]: any } | ArrayLike<any>;
 
 export type MaybePromise<T> = T | PromiseLike<T>;
 export type MaybePartial<T> = T | Partial<T>;
@@ -16,7 +25,7 @@ export type ExcludeIndexSignature<T> = {
 };
 
 export type MakeNonNullable<T> = Prettify<{
-  [K in keyof T as T[K] extends Nullish ? never : K]: T[K];
+  [K in keyof T as T[K] extends null | undefined ? never : K]: T[K];
 }>;
 
 /* Array types */
